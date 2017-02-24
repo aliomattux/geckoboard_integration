@@ -1,0 +1,64 @@
+<openerp>
+    <data>
+        <menuitem name="Gecko Board"
+        id="menu_geckoboard"
+        parent="mage2odoo.menu_mage_core"
+        sequence="200"/>
+
+        <record id="view_geckoboard_widgets_tree" model="ir.ui.view">
+            <field name="name">Geckoboard Widgets Tree</field>
+            <field name="model">gecko.board.widget</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_geckoboard_widgets_form" model="ir.ui.view">
+            <field name="name">Geckoboard Widgets Form</field>
+            <field name="model">gecko.board.widget</field>
+            <field name="arch" type="xml">
+		<form string="">
+		    <header>
+			<button name="send_widget_update" type="object" string="Run" />
+		    </header>
+		    <group>
+			<field name="name" />
+			<field name="short_time" />
+			<field name="long_time" />
+		    </group>
+		    <group>
+			<newline/>
+			<field name="function_name" />
+			<field name="widget_key" />
+			<newline/>
+			<field name="widget_url" />
+			<newline/>
+			<field name="filtered_statuses" widget="many2many_tags" />
+			<newline/>
+			<field name="included_shipping_methods" widget="many2many_tags" />
+			<newline/>
+			<field name="excluded_shipping_methods" widget="many2many_tags" />
+		    </group>
+		</form>
+            </field>
+        </record>
+
+        <record id="action_geckoboard_widgets" model="ir.actions.act_window">
+            <field name="name">Geckoboard Widgets</field>
+            <field name="res_model">gecko.board.widget</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+	    <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_geckoboard_widgets_tree"/>
+        </record>
+
+        <menuitem
+        id="menu_action_geckoboard_widget"
+        parent="menu_geckoboard"
+        action="action_geckoboard_widgets"
+        sequence="100"/>
+
+   </data>
+</openerp>
